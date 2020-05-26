@@ -1,1 +1,1 @@
-## This app was created at 4th Year 1st Semester CPMAD Module final examination at Sri Lanka Institute of Information Technology. This app could use some improvements as the app is still pretty minimal.
+## This app was created for Remote Kids Education during COVID 19 Period
