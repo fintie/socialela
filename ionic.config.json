@@ -1,7 +1,7 @@
 {
-  "name": "cpmad-final",
+  "name": "eLearning Social Good",
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular"
+  "type": "angular"
 }
