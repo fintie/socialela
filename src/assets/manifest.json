@@ -33,7 +33,7 @@
     "NetworkStatus"
   ],
   "urls": [
-    "http://www.yourappserver.com/*"
+    "http://192.168.0.18:8100"
   ],
   "background_color": "#4e8ef7",
   "theme_display": "show",
