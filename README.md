@@ -8,3 +8,28 @@ install that application first on your mobile device).
 
 Read more on [the Elastos developer website](https://developer.elastos.org) to learn more about building and running 
 your own Trinity applications.
+
+# node_modules fix
+
+IN
+
+\node_modules\ionic-angular\components\app\app.js
+
+Replace
+
+import { DOCUMENT, Title } from '@angular/platform-browser';
+with
+
+import { DOCUMENT } from '@angular/common';
+import { Title } from '@angular/platform-browser';
+And IN
+
+\node_modules\ionic-angular\module.js
+
+Replace
+
+import { DOCUMENT, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+With
+
+import { DOCUMENT } from '@angular/common';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';

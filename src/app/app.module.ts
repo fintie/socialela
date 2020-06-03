@@ -8,19 +8,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { MyApp } from './app.component';
 
 import { AboutPage } from './pages/about/about';
-import { ContactPage } from './pages/contact/contact';
+import { ProfilePage } from './pages/profile/profile';
 import { HomePage } from './pages/home/home';
 import { TabsPage } from './pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
+import { ItemsProvider } from './providers/items/items';
+// import { DatabaseAccessProvider } from './providers/database-access/database-access';
+import { SecondaryCoursePage } from "./pages/secondary-course/secondary-course";
+import { PrimaryCoursePage } from "./pages/primary-course/primary-course";
+import { ItemPage } from './pages/item/item';
+
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
     HomePage,
+    // ItemPage,
+    // SecondaryCoursePage,
+    // PrimaryCoursePage,
+    ProfilePage,
     TabsPage
   ],
   imports: [
@@ -33,8 +42,11 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
     HomePage,
+    // ItemPage,
+    // SecondaryCoursePage,
+    // PrimaryCoursePage,
+    ProfilePage,
     TabsPage
   ],
   providers: [
@@ -42,7 +54,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
     SplashScreen,
     Platform,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {provide: ErrorHandler, useClass: ErrorHandler}
+    {provide: ErrorHandler, useClass: ErrorHandler},
+    ItemsProvider
+    // DatabaseAccessProvider
   ]
 })
 export class AppModule {}
