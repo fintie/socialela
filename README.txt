@@ -1,1 +1,0 @@
-## This app was created for Remote Kids Education during COVID 19 Period

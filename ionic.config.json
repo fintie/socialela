@@ -1,7 +1,5 @@
 {
-  "name": "eLearning Social Good",
-  "integrations": {
-    "cordova": {}
-  },
+  "name": "New Ionic App",
+  "integrations": {},
   "type": "angular"
 }

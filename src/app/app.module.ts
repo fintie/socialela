@@ -1,65 +1,48 @@
-import { ItemPage } from '../pages/item/item';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { CommonModule } from '@angular/common';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy, Platform } from '@ionic/angular';
+import { AppRoutingModule } from './app-routing.module';
+
 import { MyApp } from './app.component';
 
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { AboutPage } from './pages/about/about';
+import { ContactPage } from './pages/contact/contact';
+import { HomePage } from './pages/home/home';
+import { TabsPage } from './pages/tabs/tabs';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { ItemsProvider } from '../providers/items/items';
-import { LoginPage } from "../pages/login/login";
-import { SignUpPage } from "../pages/sign-up-page/sign-up-page";
-import { DatabaseAccessProvider } from '../providers/database-access/database-access';
-import { SQLiteObject, SQLite } from '@ionic-native/sqlite';
-import { Courses1Page } from "../pages/courses1/courses1";
-import { SecondaryCoursePage } from "../pages/secondary-course/secondary-course";
-import { PrimaryCoursePage } from "../pages/primary-course/primary-course";
-import { ProfilePage } from "../pages/profile/profile";
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
-ProfilePage
 @NgModule({
   declarations: [
     MyApp,
-    Courses1Page,
+    AboutPage,
     ContactPage,
     HomePage,
-    ItemPage,
-    SignUpPage,
-    LoginPage,
-    SecondaryCoursePage,
-    PrimaryCoursePage,
-    ProfilePage,
     TabsPage
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    AppRoutingModule,
+    IonicModule.forRoot()
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [MyApp],
   entryComponents: [
     MyApp,
-    Courses1Page,
+    AboutPage,
     ContactPage,
     HomePage,
-    ItemPage,
-    LoginPage,
-    SignUpPage,
-    SecondaryCoursePage,
-    PrimaryCoursePage,
-    ProfilePage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    SQLite,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ItemsProvider,
-    DatabaseAccessProvider
+    Platform,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: ErrorHandler, useClass: ErrorHandler}
   ]
 })
 export class AppModule {}

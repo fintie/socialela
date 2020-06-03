@@ -4,24 +4,31 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
     "lib": [
       "dom",
       "es2015"
     ],
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "baseUrl": "./",
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@elastosfoundation"
+    ],
+    "types": [
+      "node",
+      "trinity-types"
+    ]
   },
   "include": [
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/*.spec.ts",
+    "src/**/__tests__/*.ts"
   ],
   "compileOnSave": false,
   "atom": {

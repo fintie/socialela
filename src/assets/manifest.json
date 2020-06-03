@@ -1,11 +1,11 @@
 {
-  "id": "org.nextgenius.elearning",
+  "id": "org.nextgenius.socialela",
   "version": "0.0.1",
   "version_code": 1,
-  "name": "eLearning",
-  "short_name": "eLearning",
-  "short_description": "eLearning Social Good",
-  "description": "eLearning Social Good",
+  "name": "Social ELA",
+  "short_name": "Social ELA",
+  "short_description": "e",
+  "description": "",
   "start_url": "index.html",
   "type": "app",
   "start_visible": "hide",
@@ -33,7 +33,7 @@
     "NetworkStatus"
   ],
   "urls": [
-    "http://192.168.0.18:8100"
+    "http://www.yourappserver.com/*"
   ],
   "background_color": "#4e8ef7",
   "theme_display": "show",
