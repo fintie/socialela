@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.192" height="31.197" viewBox="-16 0 55.192 31.197">
+    <defs>
+        <style>
+            .prefix__cls-2{fill:#fff;stroke:#fff}
+        </style>
+    </defs>
+    <g id="prefix__SHARE_ICON" data-name="SHARE ICON" transform="translate(.5 .764)">
+        <path id="prefix__Union_6" d="M4.887 19.495H3.051A3.054 3.054 0 0 1 0 16.45V3.051A3.053 3.053 0 0 1 3.051 0h1.684a.832.832 0 1 1 0 1.664H3.051a1.389 1.389 0 0 0-1.386 1.387v13.391a1.388 1.388 0 0 0 1.386 1.388H19.14a1.389 1.389 0 0 0 1.387-1.387v-5.23V3.051a1.39 1.39 0 0 0-1.387-1.387h-1.513a.832.832 0 1 1 0-1.664h1.514a3.053 3.053 0 0 1 3.051 3.051v13.392a3.053 3.053 0 0 1-3.051 3.051z" data-name="Union 6" transform="translate(0 10.439)" style="stroke-miterlimit:10;fill:#fff;stroke:#fff"/>
+        <path id="prefix__Path_2126" d="M8.044 8.877a.833.833 0 0 1-.832-.832V1.664H.832A.832.832 0 1 1 .832 0h7.212a.832.832 0 0 1 .832.832v7.213a.832.832 0 0 1-.832.832z" class="prefix__cls-2" data-name="Path 2126" transform="rotate(-45 9.993 -2.691)"/>
+        <path id="prefix__Path_2127" d="M.832 14.425A.833.833 0 0 1 .244 13L13 .244a.832.832 0 0 1 1.177 1.177L1.421 14.181a.83.83 0 0 1-.589.244z" class="prefix__cls-2" data-name="Path 2127" transform="rotate(-45 12.766 4.005)"/>
+    </g>
+</svg>

@@ -1,29 +1,182 @@
-<ion-content text-center>
-    <div class="user_cover_div">
-        <img src="assets/img/bg_purple.jpg">
-    </div>
-
-    <div class="below_pic" text-center>
-        <button ion-button (click)="editProfileClicked" class="btn_follow">EDIT PROFILE</button>
-    </div>
-    <hr>
-    <h1>
-        <p>My Courses</p>
-    </h1>
-    <div>
-        <ion-list no-lines scrollX="true">
-            <div *ngIf="products.length == 0">
-                No items to display.
+<ion-content>
+        <ion-grid class="container" [class.blur]="profileService.popup" [class.darkContainer]="theme.darkMode">
+      
+          <!-- Header -->
+          <div class="header">
+            <ion-img *ngIf="!hiveService.profileImage" class="profile-img" src="/assets/images/default-contact.svg"></ion-img>
+            <ion-avatar *ngIf="hiveService.profileImage">
+              <ion-img src="hiveService.profileImage"></ion-img>
+            </ion-avatar>
+            <h1 mode='md' *ngIf="profile">
+              {{ profile.getName() }}
+            </h1>
+            <ion-row *ngIf="!theme.darkMode" class="btn-row">
+              <ion-img src="/assets/buttons/scan.svg" (click)="showQRCode()"></ion-img>
+              <ion-img src="/assets/buttons/edit.svg" (click)="showOptions($event, 'edit')"></ion-img>
+              <ion-img src="/assets/buttons/options.svg" (click)="showOptions($event, 'profile')"></ion-img>
+            </ion-row>
+            <ion-row *ngIf="theme.darkMode" class="btn-row">
+              <ion-img src="/assets/buttons/darkmode/scan.svg" (click)="showQRCode()"></ion-img>
+              <ion-img src="/assets/buttons/darkmode/edit.svg" (click)="showOptions($event, 'edit')"></ion-img>
+              <ion-img src="/assets/buttons/darkmode/options.svg" (click)="showOptions($event, 'profile')"></ion-img>
+            </ion-row>
+          </div>
+      
+          <!-- List Tabs -->
+          <ion-segment>
+            <ion-segment-button [class.active]="detailsActive" (click)="changeList('details')">
+              <ion-label>{{ 'profile-details' | translate }}</ion-label>
+            </ion-segment-button>
+            <ion-segment-button [class.active]="credsActive" (click)="changeList('credentials')">
+              <ion-label>{{ 'profile-credentials' | translate }}</ion-label>
+            </ion-segment-button>
+            <ion-segment-button [class.active]="capsulesActive" (click)="changeList('capsules')">
+              <ion-label>{{ 'profile-capsules' | translate }}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+      
+          <!-- Details List -->
+          <ion-list *ngIf="detailsActive">
+      
+            <ion-row class="visibility-row">
+              <ion-col offset="9.5" size="2.5" class="visibility-col">
+                <p *ngIf="profileService.editingVisibility">{{ 'visibility' | translate }}</p>
+              </ion-col>
+            </ion-row>
+      
+            <div *ngIf="profileService.visibleData.length > 0">
+              <ion-row class="detail-row" *ngFor="let entry of profileService.visibleData">
+                <ion-col size="9.5" class="detail-col">
+                  <h5>{{ entry.label }}</h5>
+                  <h4>{{ entry.value }} </h4>
+                </ion-col>
+                <ion-col *ngIf="profileService.editingVisibility" size="2.5" class="checkbox-col">
+                  <ion-checkbox
+                    [(ngModel)]="entry.willingToBePubliclyVisible"
+                    [disabled]="!profileService.editingVisibility"
+                    color="success"
+                    mode="ios"
+                    [ngClass]="{ 'checkBox-visibility-edit': profileService.editingVisibility }">
+                  </ion-checkbox>
+                </ion-col>
+              </ion-row>
             </div>
-            <ion-item *ngFor="let product of products">
-                <ion-card text-center>
-                    <img src="{{product.src}}" class="product" />
-                    <ion-card-content>
-                        <ion-card-title>{{product.name}}</ion-card-title>
-                        <p text-wrap>{{product.points}}</p>
-                    </ion-card-content>
-                </ion-card>
-            </ion-item>
-        </ion-list>
-    </div>
-</ion-content>
+            <div *ngIf="profileService.invisibleData.length > 0">
+              <ion-row class="detail-row" *ngFor="let entry of profileService.invisibleData">
+                <ion-col size="9.5" class="detail-col">
+                  <h5>{{ entry.label }}</h5>
+                  <h4>{{ entry.value }} </h4>
+                </ion-col>
+                <ion-col *ngIf="profileService.editingVisibility" size="2.5" class="checkbox-col">
+                  <ion-checkbox
+                    [(ngModel)]="entry.willingToBePubliclyVisible"
+                    [disabled]="!profileService.editingVisibility"
+                    color="success"
+                    mode="ios"
+                    [ngClass]="{ 'checkBox-visibility-edit': profileService.editingVisibility }">
+                  </ion-checkbox>
+                </ion-col>
+              </ion-row>
+            </div>
+      
+            <ion-row class="btn-container" [ngStyle]="{ 'visibility': (profileService.editingVisibility ? 'visible' : 'hidden') }">
+              <ion-button color="success" (click)="publishVisibilityChanges()">
+                <ion-label>{{ 'publish-changes' | translate }}</ion-label>
+              </ion-button>
+            </ion-row>
+      
+          </ion-list>
+      
+          <!-- Credentials List -->
+          <ion-list *ngIf="credsActive && hasCredential">
+      
+            <ion-row>
+              <ion-col offset="9.5" size="2.5" class="visibility-col">
+                <p *ngIf="profileService.editingVisibility">{{ 'visibility' | translate }}</p>
+              </ion-col>
+            </ion-row>
+      
+            <div *ngIf="profileService.visibleData.length > 0">
+              <ion-row class="cred-row" *ngFor="let entry of profileService.visibleCred">
+                <ion-col offset="0.25" [size]="profileService.editingVisibility ? 9.25 : 11.5">
+                  <ion-card>
+                    <ion-row>
+                      <ion-col size="2">
+                        <ion-avatar></ion-avatar>
+                      </ion-col>
+                      <ion-col size="10">
+                        <ion-label class="title" >{{ getDisplayableCredentialTitle(entry) }}</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <div class="property">
+                      <ion-row  *ngFor="let prop of displayableProperties(entry.credential)">
+                        <ion-col class="value">
+                          <div>{{ prop.value }}</div>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+                  </ion-card>
+                </ion-col>
+                <ion-col *ngIf="profileService.editingVisibility" size="2.5" class="checkbox-col">
+                  <ion-checkbox
+                    [(ngModel)]="entry.willingToBePubliclyVisible"
+                    [disabled]="!profileService.editingVisibility"
+                    color="success"
+                    mode="ios"
+                    [ngClass]="{ 'checkBox-visibility-edit': profileService.editingVisibility }">
+                  </ion-checkbox>
+                </ion-col>
+              </ion-row>
+            </div>
+      
+            <div *ngIf="profileService.invisibleData.length > 0" class="ion-text-center">
+              <ion-row class="cred-row" *ngFor="let entry of profileService.invisibleCred">
+                <ion-col offset="0.25" [size]="profileService.editingVisibility ? 9.25 : 11.5">
+                  <ion-card>
+                    <ion-row>
+                      <ion-col size="2">
+                        <ion-avatar></ion-avatar>
+                      </ion-col>
+                      <ion-col size="10">
+                        <ion-label class="title" >{{ getDisplayableCredentialTitle(entry) }}</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <div class="property">
+                      <ion-row  *ngFor="let prop of displayableProperties(entry.credential)">
+                        <ion-col class="value">
+                          <!-- TODO here: Display prop.key in case the credential contains several keys and those keys are different from the credential key -->
+                          <div>{{ getDisplayableEntryValue(prop.value) }}</div>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+                  </ion-card>
+                </ion-col>
+                <ion-col *ngIf="profileService.editingVisibility" size="2.5" class="checkbox-col">
+                  <ion-checkbox
+                    [(ngModel)]="entry.willingToBePubliclyVisible"
+                    [disabled]="!profileService.editingVisibility"
+                    color="success"
+                    mode="ios"
+                    [ngClass]="{ 'checkBox-visibility-edit': profileService.editingVisibility }">
+                  </ion-checkbox>
+                </ion-col>
+              </ion-row>
+            </div>
+      
+            <ion-row class="btn-container" [ngStyle]="{ 'visibility': (profileService.editingVisibility ? 'visible' : 'hidden') }">
+              <ion-button color="success" (click)="publishVisibilityChanges()">
+                <ion-label>{{ 'publish-changes' | translate }}</ion-label>
+              </ion-button>
+            </ion-row>
+      
+          </ion-list>
+      
+          <ion-list *ngIf="capsulesActive" class="ion-text-center">
+            <h1>{{ 'no-capsules-title' | translate }}</h1>
+            <p>
+              {{ 'no-capsules-text' | translate }}
+            </p>
+          </ion-list>
+      
+        </ion-grid>
+      </ion-content>

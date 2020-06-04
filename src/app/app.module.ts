@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { MyApp } from './app.component';
 
-import { AboutPage } from './pages/about/about';
+import { MyCoursesPage } from './pages/my_courses/my_courses';
 import { ProfilePage } from './pages/profile/profile';
 import { HomePage } from './pages/home/home';
 import { TabsPage } from './pages/tabs/tabs';
@@ -24,7 +24,7 @@ import { ItemPage } from './pages/item/item';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    MyCoursesPage,
     HomePage,
     // ItemPage,
     // SecondaryCoursePage,
@@ -41,7 +41,7 @@ import { ItemPage } from './pages/item/item';
   bootstrap: [MyApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    MyCoursesPage,
     HomePage,
     // ItemPage,
     // SecondaryCoursePage,

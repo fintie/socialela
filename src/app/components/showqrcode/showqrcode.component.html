@@ -1,0 +1,26 @@
+<ion-grid [class.darkContainer]="theme.darkMode">
+
+  <ion-row class="ion-text-center">
+    <h1>My Identity QR Code</h1>
+  </ion-row>
+
+  <ion-row >
+    <ion-col class="ion-text-center">
+      <qrcode [qrdata]="qrCodeString" [size]="150"></qrcode>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center">
+    <div class="did-string">{{ didString.slice(4,16) }}...{{ didString.slice(40,46) }}</div>
+  </ion-row>
+
+  <ion-row class="btn-container">
+    <ion-button color="success" (click)="shareInvitationLink()">
+      <ion-label>{{ 'share' | translate }}</ion-label>
+    </ion-button>
+    <ion-button color="success" (click)="copyDIDToClipboard()">
+      <ion-label>{{ 'copy-to-clipboard' | translate }}</ion-label>
+    </ion-button>
+  </ion-row>
+
+</ion-grid>
